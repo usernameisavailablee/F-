@@ -2,15 +2,14 @@
 open System
 
 
-let answer (s:string):string = 
+let answer (s:string) = 
     System.Console.WriteLine()
     match s with
     |_ when s="1"||s="2" -> printfn "Подлиза" 
-    |_ when s="3"-> printfn "Ну попробуй" 
-  
-    let s= System.Console.ReadLine()
-    if   s="Python" then "питонисты..."
-    else "Слушай, а неплохой выбор!"
+    |_ when s="3"-> 
+        let s= System.Console.ReadLine()
+        if   s="Python" then printfn "питонисты..."
+        else printfn "Слушай, а неплохой выбор!"
     
 [<EntryPoint>]
 let main argv =
