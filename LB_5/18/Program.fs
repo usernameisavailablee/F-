@@ -30,10 +30,35 @@ let comp a =
            c newCand newInit 
     c a 1
 
+let rec NOD n m=
+    if n=0||m=0 then n+m 
+    else
+    let newn=if n>m then n%m else n
+    let newm=if n<=m then m%n else m
+    NOD newn newm
+
+let composition a =
+    let rec compos a init=
+        if a=0 then init else
+           let newinit=init*(a%10)
+           let newa=a/10
+           compos newa newinit
+    compos a 1
+
+let max a init=
+    let rec max1 a init cand=
+        if cand=0 then init else
+           let newInit=if a%cand=0 && cand%2=1 && not(Issimle a) && cand>init then cand else init
+           let newCand=cand-1
+           max1 a newInit newCand
+    max1 a init a
+
 [<EntryPoint>]
 let main argv =
     let a=System.Convert.ToInt32(System.Console.ReadLine())
     System.Console.WriteLine("Максимальный простой делитель числа:{0}",maxdiv a )
     System.Console.WriteLine("Произведение цифр числа, не кратных 5:{0}",comp a)
-    
+    System.Console.WriteLine("(1)Произведение цифр числа:{0}",composition a )
+    System.Console.WriteLine("(2)Максимальный нечетный непростой делитель:{0}",max a 1)
+    System.Console.WriteLine("НОД (1) и (2):{0}",NOD (composition a) (max a 1) )
     0 
