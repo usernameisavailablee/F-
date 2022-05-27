@@ -42,20 +42,19 @@ let composition a =
            compos newa newinit
     compos a 1
 
-let max a init=
+let max a =
     let rec max1 a init cand=
         if cand=0 then init else
            let newInit=if a%cand=0 && cand%2=1 && not(Issimle a) && cand>init then cand else init
            let newCand=cand-1
            max1 a newInit newCand
-    max1 a init a
-
+    max1 a 1 a
 [<EntryPoint>]
 let main argv =
     let a=System.Convert.ToInt32(System.Console.ReadLine())
     System.Console.WriteLine("Максимальный простой делитель числа:{0}",maxdiv a )
     System.Console.WriteLine("Произведение цифр числа, не кратных 5:{0}",comp a)
     System.Console.WriteLine("(1)Произведение цифр числа:{0}",composition a )
-    System.Console.WriteLine("(2)Максимальный нечетный простой делитель:{0}",max a 1)
-    System.Console.WriteLine("НОД (1) и (2):{0}",NOD (composition a) (max a 1) )
-    0 
+    System.Console.WriteLine("(2)Максимальный нечетный простой делитель:{0}",max a )
+    System.Console.WriteLine("НОД (1) и (2):{0}",NOD (composition a) (max a) )
+    0 // return an integer exit code
